@@ -1,174 +1,174 @@
 :root {
   --primary-color: #1abc9c;
   --secondary-color: #16a085;
+  --background-color: #f7f7f7;
+  --text-color: #2c3e50;
+  --highlight-color: #ff5252;
+  --button-hover-color: #e67e22;
+  --done-color: #2ecc71;
+  --visited-color: #3498db;
+  --current-color: #9b59b6;
 }
+
 * {
-  /* Below is the standard CSS code one should add to get rid of default margins and padding which most of tge HTML elements have */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   user-select: none;
 }
+
 body {
-  position: relative;
-  min-height: 100vh;
-  text-align: center;
+  background-color: var(--background-color);
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  align-items: stretch;
+  min-height: 100vh;
+  align-items: center;
 }
 
-/* Title CSS */
-.title {
+.nav-container {
+  width: 100%;
   background-color: var(--primary-color);
-  text-align: center;
-  font-size: 1.2em;
-  padding-block: 0.5em;
-  color: #fff;
-  cursor: pointer;
+  padding: 1em 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Navbar CSS */
+.title {
+  font-size: 2em;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.title:hover {
+  transform: scale(1.1);
+}
+
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.8em;
-  font-size: 16px;
-  min-height: 70px;
-  padding-block: 0.6em;
+  gap: 1.2em;
+  padding: 1em;
   background-color: var(--secondary-color);
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.navbar a {
+
+.navbar a, .navbar select {
   all: unset;
   cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-  padding: 8px 10px;
-  border-radius: 6px;
-  transition: 0.3s;
-  background-color: #1abc9c;
-}
-.navbar a:hover {
-  background-color: transparent;
-}
-.navbar #menu {
-  width: fit-content;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 8px;
-  background-color: #1abc9c;
   color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
-.navbar > .icon {
-  display: none;
+
+.navbar a:hover, .navbar select:hover {
+  background-color: var(--button-hover-color);
 }
-#menu,
-#random,
-#start {
+
+.navbar select {
   cursor: pointer;
 }
 
-/* Center css */
+/* Updated Center CSS */
 .center {
   margin: 0 auto;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Added shadow to make page border free */
-  height: 420px;
-  width: 410px;
-  max-height: 731px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Shadow for better visibility */
+  height: 600px; /* Increased height */
+  width: 1000px; /* Increased width */
+  max-height: 800px; /* Max height */
+  max-width: 100%; /* Max width to make it responsive */
+  background-color: #f7f7f7; /* Optional: Background color */
+  border-radius: 10px; /* Optional: Add some rounding to the corners */
 }
+
+
 .array {
   display: flex;
-  align-items: flex-start;
-  min-height: 100%;
-  height: 100%;
-  padding: 1rem;
-  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1px;
+  background-color: white;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  height: 420px;
+  max-width: 100%;
 }
+
+/* Updated Cell CSS */
 .cell {
   display: flex;
   align-items: flex-start;
-  flex: 0.5;
-  width: 0.000001%;
-  margin: 1px;
+  flex: 1; /* Increased flex to make cells larger */
+  width: 20px; /* Increased width for each array element */
+  height: 100%; /* Make the height of cells relative to the center container */
+  margin: 2px; /* Optional: Increase margin for better spacing */
   background-color: #d6d6d6;
   resize: horizontal;
   position: relative;
   transition: all 0.4s ease-in;
 }
+
+
 .cell.done {
-  background-color: #9cec5b;
-  border-color: #9cec5b;
-  color: white;
-  transition: all 0.4s ease-out;
+  background-color: var(--done-color);
 }
+
 .cell.visited {
-  border-color: #6184d8;
-  background-color: #6184d8;
-  color: white;
-  transition: 0.5s;
+  background-color: var(--visited-color);
 }
+
 .cell.current {
-  border-color: #50c5b7;
-  background-color: #50c5b7;
-  color: white;
-  transition: all 0.4s ease-out;
+  background-color: var(--current-color);
 }
+
 .cell.min {
-  background-color: #ff1493;
-  border-color: #ff1493;
+  background-color: var(--highlight-color);
+}
+
+/* Footer Styling */
+.footer {
+  background-color: var(--secondary-color);
   color: white;
-  transition: all 0.4s ease-out;
-}
-
-/* Footer CSS */
-.fa.fa-heart {
-  color: #eb2c13;
-}
-footer {
   text-align: center;
-  font-size: 18px;
-  color: #2c3e50;
-  padding: 1.6em;
-}
-.footer > p:nth-child(1) {
-  margin-bottom: 0.6em;
-}
-.link {
-  text-decoration: none;
-  font-weight: bold;
-  color: #ff5252;
-  font-size: 20px;
+  padding: 1.6em 0;
+  width: 100%;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.1em;
 }
 
-@media screen and (max-width: 600px) {
+.footer p {
+  margin: 0.6em 0;
+}
+
+.footer .fa-heart {
+  color: var(--highlight-color);
+}
+
+.footer a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.5em;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--highlight-color);
+}
+
+@media screen and (max-width: 768px) {
   .navbar {
-    gap: 0.4em;
-  }
-  .title {
-    font-size: 17px;
-  }
-  .navbar *,
-  .navbar a {
-    font-size: 14px;
-  }
-  .footer {
-    font-size: 18px;
-  }
-  a#random {
-    order: 4;
-  }
-  a.start {
-    order: 5;
+    flex-direction: column;
   }
 }
+
 @media screen and (max-width: 550px) {
-  .center {
-    width: 95%;
+  .array {
+    width: 90%;
+    height: 350px;
   }
 }
